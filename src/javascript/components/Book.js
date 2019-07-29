@@ -8,8 +8,8 @@ window.experience.book = {
         this.container = document.querySelector('.js-container');
         this.camera = new THREE.PerspectiveCamera( 105, window.innerWidth / window.innerHeight, 0.4, 0);
         this.scene = new THREE.Scene();
-        this.light = new THREE.PointLight( 0xFFFFFF, 1.5, 200 );
-        this.light.position.set( 0, 0, 0 );
+        this.light = new THREE.PointLight( 0xFFFFFF, 5, 200 );
+        this.light.position.set( 0, 150, 20 );
         console.log(this.light)
         this.renderer = new THREE.WebGLRenderer( { antialias: true } );
         window.addEventListener('resize', this.onWindowResize.bind(this));
@@ -33,7 +33,7 @@ window.experience.book = {
     render: function () {
         'use strict';
         this.controls = new OrbitControls( this.camera, this.renderer.domElement);
-        this.camera.position.set( 20, 20, 80 );
+        this.camera.position.set( 50, -40, 30 );
         this.scene.add( this.cube, this.light );
         this.cube.castShadow = true;
         this.controls.update();
@@ -44,8 +44,9 @@ window.experience.book = {
     animate: function () {
         'use strict';
         window.requestAnimationFrame(this.animate.bind(this));
+        this.camera.enableDamping = true;
         this.controls.update();
-        this.cube.rotation.y += 0.02
+        this.cube.rotation.y += 0.002
         this.renderer.render(this.scene, this.camera)
     },
     onWindowResize: function() {
