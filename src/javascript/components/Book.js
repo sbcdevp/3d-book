@@ -3,15 +3,15 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 window.experience = window.experience || {};
 window.experience.book = {
-    init: function () {
+    initBook: function () {
         'use strict';
+        console.log(this)
         this.container = document.querySelector('.js-container');
         this.camera = new THREE.PerspectiveCamera( 105, window.innerWidth / window.innerHeight, 0.4, 0);
         this.scene = new THREE.Scene();
         this.light = new THREE.PointLight( 0xFFFFFF, 5, 200 );
         this.light.position.set( 0, 150, 20 );
-        console.log(this.light)
-        this.renderer = new THREE.WebGLRenderer( { antialias: true } );
+        this.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true, transparent: true } );
         window.addEventListener('resize', this.onWindowResize.bind(this));
         this.initGeometry();
         this.animate();
@@ -57,7 +57,7 @@ window.experience.book = {
     invoke: function () {
         'use strict';
         return {
-            init: this.init.bind(this)
+            initBook: this.initBook.bind(this)
         };
     }
 }.invoke();
