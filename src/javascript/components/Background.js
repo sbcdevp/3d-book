@@ -6,13 +6,12 @@ window.experience.background = {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
         this.imgTab = [];
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 96; i++) {
             var img = "img" + i;
             img = new Image();
-            img.src = "images/"+ i +".png";
+            img.src = "images/img-0"+ i +".jpg";
             img.onload = this.setValues.bind(this, img);
         };
-
     },
     setValues: function (img){
         'use strict';
@@ -20,9 +19,9 @@ window.experience.background = {
         this.imgProps = {
             img: img,
             src: img.src,
-            speed: Math.random() * 0.5,
-            xPos: Math.random() * this.canvas.width,
-            yPos: Math.random() * this.canvas.height,
+            speed: Math.random() * 0.04,
+            xPos: Math.random() * this.canvas.width - 100,
+            yPos: Math.random() * this.canvas.height * 4,
             imgWidth: img.width / 16,
             imgHeight: img.height / 16
         };
@@ -39,19 +38,19 @@ window.experience.background = {
     drawImage: function () {
         'use strict';
         for (var i = 0; i < this.imgTab.length; i++) {
-            this.context.drawImage(this.imgTab[i].img, this.imgTab[i].xPos, this.imgTab[i].yPos - this.imgTab[i].imgHeight, this.imgTab[i].imgWidth, this.imgTab[i].imgHeight);
+            this.context.drawImage(this.imgTab[i].img, this.imgTab[i].xPos, this.imgTab[i].yPos, this.imgTab[i].imgWidth, this.imgTab[i].imgHeight);
             this.imageSpeed(i)
             this.imageReset(i);
         }
     },
     imageSpeed: function (i) {
         'use strict';
-        this.imgTab[i].yPos += this.imgTab[i].speed;
+        this.imgTab[i].yPos += this.imgTab[i].speed + 0.004;
     },
     imageReset: function (i) {
         'use strict';
         if (this.imgTab[i].yPos - this.imgTab[i].imgHeight > this.canvas.height) {
-            this.imgTab[i].yPos = (this.imgTab[i].yPos - this.imgTab[i].imgHeight) - this.canvas.height;
+            this.imgTab[i].yPos = (this.imgTab[i].yPos - this.imgTab[i].imgHeight) - this.canvas.height * 6;
         }
     },
     invoke: function () {
