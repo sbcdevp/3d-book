@@ -1,3 +1,7 @@
+.container
+    cursor: grab
+    &:active
+        cursor: grabbing
 .images-background
     left: 0
     position: absolute
@@ -13,16 +17,19 @@
     color: white
     background-color: black
     font-family: "DraftB"
-    font-size: 10px
     text-align: center
     z-index: 99
-    @media screen and (max-width: 720px)
+    @media screen and (min-width: 320px)
         font-size: 6px
+    @media screen and (min-width: 720px)
+        font-size: 10px
     &-names
         display: flex
         justify-content: space-around
         position: relative
         z-index: 99
+        @media screen and (max-width: 480px)
+            display: none
         a
             text-decoration: none
             color: inherit

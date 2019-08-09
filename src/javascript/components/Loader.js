@@ -12,7 +12,7 @@ window.experience.loader = {
     },
     updateLoader: function () {
         'use strict';
-        this.time = (Date.now()-this.firstTime) / 5;
+        this.time = (Date.now()-this.firstTime) / 20;
         var count = 0;
         var that = this;
         this.set = setInterval(function(){

@@ -6,12 +6,21 @@ window.experience.background = {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
         this.imgTab = [];
-        for (var i = 0; i < 96; i++) {
-            var img = "img" + i;
-            img = new Image();
-            img.src = "images/img-0"+ i +".jpg";
-            img.onload = this.setValues.bind(this, img);
-        };
+        if (window.innerWidth < 720) {
+            for (var i = 0; i < 36; i++) {
+                var img = "img" + i;
+                img = new Image();
+                img.src = "images/img-0"+ i +".jpg";
+                img.onload = this.setValues.bind(this, img);
+            };
+        }else {
+            for (var i = 0; i < 96; i++) {
+                var img = "img" + i;
+                img = new Image();
+                img.src = "images/img-0"+ i +".jpg";
+                img.onload = this.setValues.bind(this, img);
+            };
+        }
     },
     setValues: function (img){
         'use strict';

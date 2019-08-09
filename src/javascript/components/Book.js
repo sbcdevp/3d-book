@@ -45,7 +45,7 @@ window.experience.book = {
         window.requestAnimationFrame(this.animate.bind(this));
         this.camera.enableDamping = true;
         this.controls.update();
-        this.cube.rotation.y += 0.002
+        this.cube.rotation.y += 0.003;
         this.renderer.render(this.scene, this.camera)
     },
     onWindowResize: function() {
