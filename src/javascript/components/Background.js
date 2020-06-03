@@ -1,3 +1,5 @@
+import RAF from "../utils/raf.js"
+
 window.experience = window.experience || {};
 window.experience.background = {
     initBackground: function () {
@@ -21,6 +23,7 @@ window.experience.background = {
                 img.onload = this.setValues.bind(this, img);
             };
         }
+        RAF.subscribe('myraf', this.animate.bind(this));
     },
     setValues: function (img){
         'use strict';
@@ -40,7 +43,8 @@ window.experience.background = {
     animate: function () {
         'use strict';
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        window.requestAnimationFrame(this.animate.bind(this));
+        RAF.start()
+
         this.drawImage();
 
     },
@@ -54,7 +58,7 @@ window.experience.background = {
     },
     imageSpeed: function (i) {
         'use strict';
-        this.imgTab[i].yPos += this.imgTab[i].speed + 0.004;
+        this.imgTab[i].yPos += this.imgTab[i].speed + 4;
     },
     imageReset: function (i) {
         'use strict';

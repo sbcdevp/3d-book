@@ -1,19 +1,26 @@
 //IMPORTS
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+import RAF from "../utils/raf.js"
+
 window.experience = window.experience || {};
 window.experience.book = {
     initBook: function () {
         'use strict';
+
         this.container = document.querySelector('.js-container');
         this.camera = new THREE.PerspectiveCamera( 105, window.innerWidth / window.innerHeight, 0.4, 0);
         this.scene = new THREE.Scene();
         this.light = new THREE.PointLight( 0xFFFFFF, 2, 200 );
         this.light.position.set( 0, 100, 0 );
         this.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true, transparent: true } );
+        RAF.subscribe('myraf', this.animate.bind(this));
+
         window.addEventListener('resize', this.onWindowResize.bind(this));
         this.initGeometry();
         this.animate();
+        
     },
     initGeometry: function () {
         'use strict';
@@ -42,11 +49,12 @@ window.experience.book = {
     },
     animate: function () {
         'use strict';
-        window.requestAnimationFrame(this.animate.bind(this));
         this.camera.enableDamping = true;
         this.controls.update();
         this.cube.rotation.y += 0.003;
         this.renderer.render(this.scene, this.camera)
+        RAF.start()
+
     },
     onWindowResize: function() {
 				this.camera.aspect = window.innerWidth / window.innerHeight;
